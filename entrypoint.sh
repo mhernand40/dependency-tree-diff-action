@@ -5,7 +5,7 @@ cd "$INPUT_BUILD_ROOT_DIR"
 wget "https://github.com/JakeWharton/dependency-tree-diff/releases/download/$INPUT_VERSION/dependency-tree-diff.jar" -q -O dependency-tree-diff.jar
 
 ./gradlew projects
-./gradlew :"$INPUT_PROJECT":dependencies --configuration "$INPUT_CONFIGURATION" >new_diff.txt
+./gradlew :"$INPUT_PROJECT":dependencies --no-configuration-cache --configuration "$INPUT_CONFIGURATION" >new_diff.txt
 git switch --force "$INPUT_BASEREF"
 ./gradlew :"$INPUT_PROJECT":dependencies --configuration "$INPUT_CONFIGURATION" >old_diff.txt
 
